@@ -55,4 +55,4 @@ def view_registrations():
     return render_template('view.html', registrations=[])
 
 if __name__ == '__main__':
-    app.run(debug=True)0
+    app.run(debug=True)
