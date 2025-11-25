@@ -10,7 +10,7 @@ app.secret_key = 'supersecretkey'  # Needed for flash messages
 def index():
     return render_template('index.html')
 
-# Registration form page
+# Registrat ion form page
 @app.route('/register')
 def register():
     return render_template('register.html')
