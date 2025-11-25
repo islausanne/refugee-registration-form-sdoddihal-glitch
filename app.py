@@ -22,6 +22,9 @@ def submit_form():
     country = request.form['country']
     age = request.form['age']
     gender = request.form['gender']
+    dob = request.form['date of birth']
+    number = request.form['phone number']
+
 
     # Check if file exists
     if os.path.exists('registrations.json'):
@@ -55,4 +58,4 @@ def view_registrations():
     return render_template('view.html', registrations=[])
 
 if __name__ == '__main__':
-    app.run(debug=True)n
+    app.run(debug=True)
