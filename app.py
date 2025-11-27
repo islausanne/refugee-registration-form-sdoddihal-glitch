@@ -22,7 +22,7 @@ def submit_form():
     country = request.form['country']
     age = request.form['age']
     gender = request.form['gender']
-    dob = request.form['date of birth']
+    dob = request.form['dob']
     number = request.form['phone number']
 
 
