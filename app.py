@@ -24,12 +24,28 @@ def submit_form():
     gender = request.form['gender']
     dob = request.form['dob']
     number = request.form['phone number']
+    id_number = request.form['Any Id information: ']
 
+    from flask import Flask, request, render_template
+
+    app = Flask(__name__)
+
+
+def submit_form():
+     if request.method == "POST":
+        id_type = request.form.get("id_type")
+        id_value = request.form.get("id_value")
+
+        print("Selected type:", id_type)
+        print("Entered value:", id_value)
+
+
+        return render_template("register.html")
 
     # Check if file exists
     if os.path.exists('registrations.json'):
         with open('registrations.json', 'r') as file:
-            data = json.load(file)
+        data = json.load(file)
     else:
         data = []
 

@@ -12,6 +12,44 @@
     <input type="date" id="dob" name="dob" required>
 </div>
      <p><input type="number" name="px§x  hone Number" placeholder="phone number" required></p>
+    <form method="POST" action="/submit">
+    <label for="id_type">ID Information:</label>
+    <select id="id_type" name="id_type" onchange="showIDBox()" required>
+        <option value="" disabled selected>Select an option</option>
+        <option value="passport">Passport</option>
+        <option value="id_number">ID Number</option>
+        <option value="other">Other</option>
+    </select>
+
+    <div id="id_number_box" style="display:none; margin-top:10px;">
+        <label id="id_label" for="id_value"></label>
+        <input type="text" id="id_value" name="id_value" required>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+function showIDBox() {
+    const type = document.getElementById("id_type").value;
+    const box = document.getElementById("id_number_box");
+    const label = document.getElementById("id_label");
+
+    if (type === "passport") {
+        label.innerHTML = "Passport Number:";
+        box.style.display = "block";
+    } else if (type === "id_number") {
+        label.innerHTML = "ID Number:";
+        box.style.display = "block";
+    } else if (type === "other") {
+        label.innerHTML = "Specify:";
+        box.style.display = "block";
+    } else {
+        box.style.display = "none";
+    }
+}
+</script>
+
 
   <p><button type="submit">Submit</button></p>
 </form>
