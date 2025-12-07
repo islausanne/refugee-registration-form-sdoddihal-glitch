@@ -4,5 +4,39 @@
     "country": "Switzerland",
     "age": "15",
     "gender": "Male"
+  },
+  {
+    "name": "swa",
+    "country": "Switzerland",
+    "age": "12",
+    "gender": "Male",
+    "dob": "2023-06-14",
+    "phone": "ew",
+    "id_type": "",
+    "id_value": "",
+    "emergency_name": "",
+    "emergency_phone": "",
+    "traveling_family": "",
+    "medical_concerns": "Yes",
+    "medical_details": "654",
+    "current_residence": "",
+    "image_filename": null
+  },
+  {
+    "name": "Ashwini",
+    "country": "India",
+    "age": 45,
+    "gender": "Female",
+    "dob": "2025-12-03",
+    "phone": "3321",
+    "id_type": "Passport",
+    "id_value": "12133",
+    "emergency_name": "International School of Lausanne",
+    "emergency_phone": "123241",
+    "traveling_family": "0",
+    "medical_concerns": "Yes",
+    "medical_details": "Thyroid",
+    "current_residence": "Lausanne",
+    "image_filename": "IMG-20251109-WA0003.jpg"
   }
 ]

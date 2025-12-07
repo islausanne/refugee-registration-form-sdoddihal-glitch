@@ -1,56 +1,104 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Refugee Registration Form</h2>
-<form method="POST" action="{{ url_for('submit_form') }}">
-  <p><input type="text" name="name" placeholder="Full name" required></p>
-  <p><input type="text" name="country" placeholder="Country of origin" required></p>
-  <p><input type="number" name="age" placeholder="Age" required></p>
-  <p><input type="text" name="gender" placeholder="Gender" required></p>
-  <p><input type="text" name="gender" placeholder="Gender" required></p>
-    <div>
-    <label for="dob">Date of Birth:</label>
-    <input type="date" id="dob" name="dob" required>
-</div>
-     <p><input type="number" name="px§x  hone Number" placeholder="phone number" required></p>
-    <form method="POST" action="/submit">
-    <label for="id_type">ID Information:</label>
-    <select id="id_type" name="id_type" onchange="showIDBox()" required>
-        <option value="" disabled selected>Select an option</option>
-        <option value="passport">Passport</option>
-        <option value="id_number">ID Number</option>
-        <option value="other">Other</option>
-    </select>
 
-    <div id="id_number_box" style="display:none; margin-top:10px;">
-        <label id="id_label" for="id_value"></label>
-        <input type="text" id="id_value" name="id_value" required>
+<form action="{{ url_for('submit_form') }}" method="POST" enctype="multipart/form-data">
+
+    <!-- Full Name -->
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <!-- Country -->
+    <label for="country">Country of Origin:</label>
+    <input type="text" id="country" name="country" required><br><br>
+
+    <!-- Age -->
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required><br><br>
+
+    <!-- Date of Birth -->
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required><br><br>
+
+    <!-- Gender -->
+    <label>Gender:</label><br>
+    <input type="radio" id="male" name="gender" value="Male" required>
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" name="gender" value="Female">
+    <label for="female">Female</label><br>
+    <input type="radio" id="nospec" name="gender" value="Prefer not to say">
+    <label for="nospec">Prefer not to say</label><br><br>
+
+    <!-- Phone -->
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone"><br><br>
+
+    <!-- ID Type -->
+    <label for="id_type">Select ID Type:</label>
+    <select id="id_type" name="id_type" onchange="showIDInput()">
+        <option value="">-- Choose an option --</option>
+        <option value="Passport">Passport</option>
+        <option value="National ID">National ID</option>
+        <option value="Other">Other</option>
+    </select><br><br>
+
+    <!-- ID Number -->
+    <div id="id_value_box" style="display:none;">
+        <label for="id_value">Enter ID Number:</label>
+        <input type="text" id="id_value" name="id_value"><br><br>
     </div>
 
-    <button type="submit">Submit</button>
+    <!-- Emergency Contact -->
+    <label>Emergency Contact Name:</label>
+    <input type="text" name="emergency_name"><br><br>
+
+    <label>Emergency Contact Phone:</label>
+    <input type="text" name="emergency_phone"><br><br>
+
+    <!-- Traveling family members -->
+    <label>Family Members Traveling With You:</label>
+    <input type="text" name="traveling_family" placeholder="Names separated by commas"><br><br>
+
+    <!-- Medical concerns -->
+    <label>Do you have any medical concerns?</label>
+    <select name="medical_concerns" id="medical_concerns" onchange="showMedicalDetails()">
+        <option value="">--Select--</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+    </select><br><br>
+
+    <div id="medical_details_box" style="display:none;">
+        <label>Please specify your medical concerns:</label>
+        <input type="text" name="medical_details"><br><br>
+    </div>
+
+    <!-- Current residence -->
+    <label>Current Residence / Shelter:</label>
+    <input type="text" name="current_residence"><br><br>
+
+    <!-- Upload image/file -->
+    <label>Upload Image / Document:</label>
+    <input type="file" name="image" accept="image/*,application/pdf"><br><br>
+
+    <button type="submit">Submit Registration</button>
+
 </form>
 
 <script>
-function showIDBox() {
-    const type = document.getElementById("id_type").value;
-    const box = document.getElementById("id_number_box");
-    const label = document.getElementById("id_label");
-
-    if (type === "passport") {
-        label.innerHTML = "Passport Number:";
-        box.style.display = "block";
-    } else if (type === "id_number") {
-        label.innerHTML = "ID Number:";
-        box.style.display = "block";
-    } else if (type === "other") {
-        label.innerHTML = "Specify:";
-        box.style.display = "block";
-    } else {
-        box.style.display = "none";
+    function showIDInput() {
+        const idType = document.getElementById("id_type").value;
+        const idBox = document.getElementById("id_value_box");
+        idBox.style.display = idType ? "block" : "none";
     }
-}
+
+    function showMedicalDetails() {
+        const val = document.getElementById("medical_concerns").value;
+        const box = document.getElementById("medical_details_box");
+        box.style.display = (val === "Yes") ? "block" : "none";
+    }
 </script>
 
-
-  <p><button type="submit">Submit</button></p>
-</form>
 {% endblock %}
+
+
+

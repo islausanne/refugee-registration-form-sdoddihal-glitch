@@ -1,26 +1,51 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Registered Refugees</h2>
+
 {% if registrations %}
-  <table>
+<table border="1" cellpadding="8">
     <tr>
-      <th>Name</th>
-      <th>Country</th>
-      <th>Age</th>
-      <th>Gender</th>
-        <th>Date of birth</th>
-          <th>Phone number</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>DOB</th>
+        <th>Phone</th>
+        <th>ID Type</th>
+        <th>ID Number</th>
+        <th>Emergency Contact</th>
+        <th>Traveling Family</th>
+        <th>Medical Concerns</th>
+        <th>Current Residence</th>
+        <th>Image/File</th>
     </tr>
     {% for person in registrations %}
-      <tr>
+    <tr>
         <td>{{ person.name }}</td>
         <td>{{ person.country }}</td>
         <td>{{ person.age }}</td>
         <td>{{ person.gender }}</td>
-      </tr>
+        <td>{{ person.dob }}</td>
+        <td>{{ person.phone }}</td>
+        <td>{{ person.id_type }}</td>
+        <td>{{ person.id_value }}</td>
+        <td>{{ person.emergency_name }} / {{ person.emergency_phone }}</td>
+        <td>{{ person.traveling_family }}</td>
+        <td>{{ person.medical_concerns }}{% if person.medical_concerns == "Yes" %}: {{ person.medical_details }}{% endif %}</td>
+        <td>{{ person.current_residence }}</td>
+        <td>
+            {% if person.image_filename %}
+                <a href="{{ url_for('static', filename='uploads/' ~ person.image_filename) }}" target="_blank">View</a>
+            {% else %}
+                N/A
+            {% endif %}
+        </td>
+    </tr>
     {% endfor %}
-  </table>
+</table>
 {% else %}
-  <p>No registrations found yet.</p>
+<p>No registrations found yet.</p>
 {% endif %}
+
 {% endblock %}
+
